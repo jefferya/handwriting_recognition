@@ -13,9 +13,16 @@
         no_repeat_ngram_size=15,      # Hard ban: If it repeats the exact same 15 words, it aborts the loop
         do_sample=True,               # Allows the model to pick a slightly less predictable word
         temperature=0.4               # Adds just enough randomness to break a rigid loop
-``` 
+```
 
-References:
+## improvements
+ 
+* missing from output: timestamp of run; model used (workflow stamps didn't get added to the header; tweak prompt)
+* add image link for CWRC-Writer to offer TEI and image side-by-side viewer
+* try adding named entity references
+
+
+## References:
 
 * Peter Binkley's DSC workshops
 * https://huggingface.co/docs/transformers/v5.5.0/en/model_doc/auto#transformers.AutoModelForImageTextToText
