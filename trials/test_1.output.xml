@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TEI xmlns="http://www.tei-c.org/ns/1/0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title level="a">Executive Mansion.</title>
+      </titleStmt>
+      <publicationStmt>
+        <date when="2023-10-27">2023-10-27</date>
+        <modelUsed>vision-language-model</modelUsed>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>Gettysburg Address Draft</title>
+          <respStmt>
+            <name>Abram Lincoln</name>
+            <date when="1863-11-19"></date>
+          </respStmt>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text xml:id="gettysburg_draft">
+    <body>
+      <p>
+        <fw type="address"><lb/>Executive Mansion,<lb/>Washington, <lb/>1863</fw><lb/><lb/>Four score and seven years ago our fathers brought forth, upon this continent<a name="anchor1"/>,</a> a new nation, <unclear>concerued</unclear>a in liberty, and dedicated to the proposition that<bq>"all men are created equal"</bq></p>
+      <p>Now we are engaged in a great civil war, testing wheather that nation,<lb/> or any nation so <unclear>concieird</unclear>, and so dedicated, can long endure. Me are met on a great battles fields of that war. We have come to dedicate a portion of it, aa a fined rest-<lb/> ing places for those who once here,<lb/> that the nation might live. This we do, in all propriety, too. Butt,<lb/> in a larger sense, we can not dedicate_ we caan not consecrat_ we<lb/> can not hallow, this grouads_<lb/> _the brave men, living and dead, who strugglesh<lb/> her, have hallowed it, far above our poor poowers<lb/> to add or detract. The worlnds nics littel note,<lb/> norlong remember what we say hear, whils it can never forget what<lb/> they did here.<lb/> It is rather for us, the living, to stand here,</p>
+    </body>
+  </text>
+</TEI>

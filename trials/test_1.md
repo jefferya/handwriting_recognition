@@ -1,32 +1,46 @@
 # Trial 1: Gettysburg Address to TEI XML
 
-## Notes:
+## Trial Setup
 
-* Run from the UofA DSC desktop:wq
+Using the Qwen 3.5 LLM running locally to test the ability to visually interpret an image/scan of handwriting and output the interpretation as TEI XML. Can the output TEI be rendered in [LEAF-Writer](https://leaf-writer.leaf-vre.org/) in the side-by-side view of the TEI and image/scan and does LEAF-Writer provide a useful platform for a human to correct any errors in the machine generated TEI and handwriting OCR output?
+
+The prompt:
+
+``` python
+    "Transcribe the handwriting in this image and format the output strictly as valid TEI XML. "
+    "Do not include any markdown formatting like ```xml, just output the raw XML. "
+    "Use the TEI lite schema"
+    "Include a minimal <teiHeader>, with the date/time of generation and model used to generate the content with the path of the original image"
+    "Wrap the transcription in <text> and <body> tags. "
+    "Use <p> for paragraphs, <lb/> for line breaks, <del> for crossed-out words, and <unclear> for illegible handwriting."
+```
+
+## Notes
+
+* UofA DSC desktop used to run the LLM
 * Trial uses a local LLM
 * Python library vllm doesn't yet work with Python 3.14 (as of 2026-04-05) to handwriting_recognition_with_transformers_qwen_3 uses the transformers library.
 * Qwen 3.5 local LLM used
 * Early attempts result the Qwen 3.5 getting caught in a loop as it tried to reconcile what it knew about the Gettysburg Address versus what it could visually intrepret from the handwritting. I asked Google Gemini for help. The suggestion:
 
-```
-	repetition_penalty=1.15,      # Makes it mathematically "expensive" to reuse recent words
-        no_repeat_ngram_size=15,      # Hard ban: If it repeats the exact same 15 words, it aborts the loop
-        do_sample=True,               # Allows the model to pick a slightly less predictable word
-        temperature=0.4               # Adds just enough randomness to break a rigid loop
+``` python
+  repetition_penalty=1.15,      # Makes it mathematically "expensive" to reuse recent words
+  no_repeat_ngram_size=15,      # Hard ban: If it repeats the exact same 15 words, it aborts the loop
+  do_sample=True,               # Allows the model to pick a slightly less predictable word
+  temperature=0.4               # Adds just enough randomness to break a rigid loop
 ```
 
 ## improvements
- 
+
 * missing from output: timestamp of run; model used (workflow stamps didn't get added to the header; tweak prompt)
 * add image link for CWRC-Writer to offer TEI and image side-by-side viewer
 * try adding named entity references
 
-
-## References:
+## References
 
 * Peter Binkley's DSC workshops
-* https://huggingface.co/docs/transformers/v5.5.0/en/model_doc/auto#transformers.AutoModelForImageTextToText
-* https://huggingface.co/docs/transformers/v5.5.0/en/model_doc/qwen3_vl#qwen3-vl
+* <https://huggingface.co/docs/transformers/v5.5.0/en/model_doc/auto#transformers.AutoModelForImageTextToText>
+* <https://huggingface.co/docs/transformers/v5.5.0/en/model_doc/qwen3_vl#qwen3-vl>
 
 ## Output
 
