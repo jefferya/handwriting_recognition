@@ -2,7 +2,7 @@
 
 ## Trial Setup
 
-Using the Qwen 3.5 LLM running locally to test the ability to visually interpret an image/scan of handwriting and output the interpretation as TEI XML. Can the output TEI be rendered in [LEAF-Writer](https://leaf-writer.leaf-vre.org/) in the side-by-side view of the TEI and image/scan and does LEAF-Writer provide a useful platform for a human to correct any errors in the machine generated TEI and handwriting OCR output?
+Using the Qwen 3.5 LLM running locally to test the ability to visually interpret an image/scan of handwriting and output the interpretation as TEI XML. Can the output TEI be rendered in [LEAF-Writer](https://leaf-writer.leaf-vre.org/) in the side-by-side view of the TEI and image/scan and does LEAF-Writer provide a useful platform for a human to correct any errors in the machine generated TEI and handwriting OCR output? Qwen 3.5 "thinking" (chain-of-though reasoning) is included in the output section.
 
 The prompt:
 
@@ -35,6 +35,9 @@ The prompt:
 * missing from output: timestamp of run; model used (workflow stamps didn't get added to the header; tweak prompt)
 * add image link for CWRC-Writer to offer TEI and image side-by-side viewer
 * try adding named entity references
+* Add schema declaration
+* oddities in output:
+  * Not XML well formed due to `/`: `<a name="anchor1"/>,</a>`
 
 ## References
 
