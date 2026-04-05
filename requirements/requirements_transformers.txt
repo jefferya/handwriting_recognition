@@ -1,0 +1,8 @@
+accelerate
+pillow
+torch
+torchvision
+transformers
+qwen-vl-utils
+
+# python3.14 -c "import torch; import torchvision; print(f'Torch: {torch.__version__} | Vision: {torchvision.__version__}')"

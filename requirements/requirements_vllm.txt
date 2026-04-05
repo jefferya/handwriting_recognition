@@ -1,0 +1,20 @@
+#git+https://github.com/allenai/olmocr.git
+#torch
+#torchvision --index-url https://download.pytorch.org/whl/cu121
+#torchvision --index-url https://download.pytorch.org/whl/cpu
+
+#git+https://github.com/allenai/olmocr.git
+#-e ./olmocr_github
+accelerate
+pillow
+torch
+#torchvision --index-url https://download.pytorch.org/whl/cu130
+#torchvision --index-url https://download.pytorch.org/whl/cpu
+transformers
+
+--extra-index-url https://wheels.vllm.ai/nightly/cu130
+--pre
+vllm
+#vllm --extra-index-url https://wheels.vllm.ai/nightly/cu130 
+condacolab
+nvidia-cuda-runtime

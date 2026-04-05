@@ -1,0 +1,90 @@
+
+import argparse
+import torch
+from PIL import Image
+from transformers import AutoModelForImageTextToText, AutoProcessor
+from qwen_vl_utils import process_vision_info
+
+def parse_arguments():
+
+    parser = argparse.ArgumentParser(description="Handwriting Recognition with OlmOCR")
+
+    parser.add_argument("--image_path", type=str, default="/tmp/congress_letter_image1.jpg", help="Path to the input image")
+    parser.add_argument("--max_new_tokens", type=int, default=100000, help="Max new tokens")
+    return parser.parse_args()
+
+
+def run_qwen35_ocr(image_path, model_size="9B", max_new_tokens=1024):
+    """
+    Performs OCR on handwritten text using the Qwen 3.5 VL architecture.
+    """
+
+    model_id = f"Qwen/Qwen3.5-{model_size}"
+
+    # Init (Auto class figures out how to call Qwen3VLForConditionalGeneration for Qwen3.5)
+    model = AutoModelForImageTextToText.from_pretrained(
+        model_id,
+        dtype=torch.bfloat16,
+        device_map="auto",
+        trust_remote_code=True
+    )
+    processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
+
+    # Prompt
+    messages = [
+        {
+            "role": "user",
+            "content": [
+                {"type": "image", "image": image_path},
+                {
+                    "text": (                                                                                                                   "Transcribe the handwriting in this image and format the output strictly as valid TEI XML. "
+                        "Do not include any markdown formatting like ```xml, just output the raw XML. "
+                        "Use the TEI lite schema"
+                        "Include a minimal <teiHeader>, with the date/time of generation and model used to generate the content with the path of the original image"
+                        "Wrap the transcription in <text> and <body> tags. "
+                        "Use <p> for paragraphs, <lb/> for line breaks, <del> for crossed-out words, and <unclear> for illegible handwriting."
+                        )
+                    
+                },
+            ],
+        }
+    ]
+
+    # Processing
+    text = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+    image_inputs, _ = process_vision_info(messages)
+
+    inputs = processor(
+        text=[text],
+        images=image_inputs,
+        padding=True,
+        return_tensors="pt"
+    ).to("cuda")
+
+    # Qwen 3.5 handles longer sequences better (up to 256k context),
+    # Add repetition penalties required to prevent loops with intial values suggested by Gemini
+    generated_ids = model.generate(
+            **inputs,
+            max_new_tokens=max_new_tokens
+            repetition_penalty=1.15,      # Makes it mathematically "expensive" to reuse recent words
+            no_repeat_ngram_size=15,      # Hard ban: If it repeats the exact same 15 words, it aborts the loop
+            do_sample=True,               # Allows the model to pick a slightly less predictable word
+            temperature=0.4               # Adds just enough randomness to break a rigid loop`
+            )
+
+    # Trim the prompt from the output
+    trimmed_ids = [out[len(ins):] for ins, out in zip(inputs.input_ids, generated_ids)]
+    output = processor.batch_decode(trimmed_ids, skip_special_tokens=True)[0]
+
+    return output
+
+if __name__ == "__main__":
+    args = parse_arguments()
+
+    print(f"--- Loading Qwen to process {args.image_path} ---")
+    try:
+        transcription = run_qwen35_ocr(args.image_path, model_size="9B", args.max_new_tokens)
+        print("\n--- Transcription Result ---\n")
+        print(transcription)
+    except Exception as e:
+        print(f"Error: {e}")
