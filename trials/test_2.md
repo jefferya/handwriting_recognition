@@ -8,6 +8,10 @@ Builds on Trial #1. Attempts to add to the output
 * image element for side-by-side view in LEAF writer
 * TEI persName element
 
+``` bash
+python src/handwriting_recognition_with_transformers_qwen_3.5.py --image_path https://tile.loc.gov/image-services/iiif/service:mss:mal:435:4356500:001/full/pct:12.5/0/default.jpg
+```
+
 The prompt:
 
 ``` python
