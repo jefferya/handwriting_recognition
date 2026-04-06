@@ -1,7 +1,6 @@
 
 import argparse
-import datetime
-import timezone
+from datetime import datetime, timezone
 import torch
 from PIL import Image
 from transformers import AutoModelForImageTextToText, AutoProcessor
@@ -100,7 +99,7 @@ def run_qwen35_ocr(image_path, model_size="9B", max_new_tokens=1024):
     # Add repetition penalties required to prevent loops with intial values suggested by Gemini
     generated_ids = model.generate(
             **inputs,
-            max_new_tokens=max_new_tokens
+            max_new_tokens=max_new_tokens,
             repetition_penalty=1.15,      # Makes it mathematically "expensive" to reuse recent words
             no_repeat_ngram_size=15,      # Hard ban: If it repeats the exact same 15 words, it aborts the loop
             do_sample=True,               # Allows the model to pick a slightly less predictable word
@@ -118,7 +117,7 @@ if __name__ == "__main__":
 
     print(f"--- Loading Qwen to process {args.image_path} ---")
     try:
-        transcription = run_qwen35_ocr(args.image_path, model_size="9B", args.max_new_tokens)
+        transcription = run_qwen35_ocr(args.image_path, model_size="9B", max_new_tokens=args.max_new_tokens)
         print("\n--- Transcription Result ---\n")
         print(transcription)
     except Exception as e:
