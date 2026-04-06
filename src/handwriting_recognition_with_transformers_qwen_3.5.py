@@ -62,11 +62,12 @@ def run_qwen35_ocr(image_path, model_size="9B", max_new_tokens=1024):
                     "Use <p> for paragraphs, <lb/> for line breaks, <del> for crossed-out words, and <unclear> for illegible handwriting."
                     f"To the <body>, add <pb facs='{image_path}'/>"
                     "</transcription>"
-                    "<analysis>"
-                    "For person named entities in the transcriptions, wrap in a TEI <persName> element and add a reference to the wikidate uri"
-                    "For place named entities in the transcriptions, wrap in a TEI <place> element and add a reference to the wikidate uri"
-                    "For dates in the transcriptions, wrap in a TEI <date> element and add a reference to the wikidate uri"
-                    "</analysis>"
+                    "<post_process_transcription>"
+                    "Post process the transcription <body> from the previous step and complete the following steps."
+                    "1. For person named entities in the transcription, wrap the named entity in a TEI <persName> element and add a reference to the wikidate uri"
+                    "2. For place named entities in the transcription, wrap the named entity in a TEI <place> element and add a reference to the wikidate uri"
+                    "3. For dates in the transcriptions, wrap the date in a TEI <date> element and add a reference to the wikidate uri"
+                    "</post_process_transcription>"
                     )
 
     prompt_text = prompt_text_trial_2
