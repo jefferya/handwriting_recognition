@@ -41,8 +41,16 @@ def run_qwen35_ocr(image_path, model_size="9B", max_new_tokens=1024):
     )
     processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
 
-    prompt_text = (
+    prompt_text_trial_1 = (
                     "Transcribe the handwriting in this image and format the output strictly as valid TEI XML. "
+                    "Do not include any markdown formatting like ```xml, just output the raw XML. "
+                    "Use the TEI lite schema"
+                    "Include a minimal <teiHeader>, with the date/time of generation and model used to generate the content with the path of the original image"
+                    "Wrap the transcription in <text> and <body> tags. "
+                    "Use <p> for paragraphs, <lb/> for line breaks, <del> for crossed-out words, and <unclear> for illegible handwriting."
+                    )
+    prompt_text_trial_2 = (
+                    "Transcribe the handwriting in this image and format the output strictly as well-formed TEI XML. "
                     "Do not include any markdown formatting like ```xml, just output the raw XML. "
                     "Use the TEI all XML schema: <https://tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng>."
                     "Include a minimal <teiHeader>."
@@ -61,6 +69,8 @@ def run_qwen35_ocr(image_path, model_size="9B", max_new_tokens=1024):
                     "For dates in the transcriptions, wrap in a TEI <date> element and add a reference to the wikidate uri"
                     "</analysis>"
                     )
+
+    prompt_text = prompt_text_trial_2
 
     # Prompt
     messages = [
