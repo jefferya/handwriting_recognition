@@ -60,7 +60,7 @@ def run_qwen35_ocr(image_path, model_size="9B", max_new_tokens=1024):
                     "<transcription>"
                     "Wrap the transcription in <text> and <body> tags. "
                     "Use <p> for paragraphs, <lb/> for line breaks, <del> for crossed-out words, and <unclear> for illegible handwriting."
-                    "To the body, add <pb facs='{image_path}'/>"
+                    f"To the <body>, add <pb facs='{image_path}'/>"
                     "</transcription>"
                     "<analysis>"
                     "For person named entities in the transcriptions, wrap in a TEI <persName> element and add a reference to the wikidate uri"
