@@ -2,7 +2,7 @@
 
 ## Trial Setup
 
-Using the Qwen 3.5 LLM running locally to test the ability to visually interpret an image/scan of handwriting and output the interpretation as TEI XML. Can the output TEI be rendered in [LEAF-Writer](https://leaf-writer.leaf-vre.org/) in the side-by-side view of the TEI and image/scan and does LEAF-Writer provide a useful platform for a human to correct any errors in the machine generated TEI and handwriting OCR output? Qwen 3.5 "thinking" (chain-of-though reasoning) is included in the output section.
+Using the Qwen 3.5 LLM running locally to test the ability to visually interpret an image/scan of handwriting and output the interpretation as TEI XML. Can the output TEI be rendered in [LEAF-Writer](https://leaf-writer.leaf-vre.org/) in the side-by-side view of the TEI and image/scan and does LEAF-Writer provide a useful platform for a human to correct any errors in the machine generated TEI and handwriting OCR output? Qwen 3.5 "thinking" (chain-of-though reasoning) is included in the output section. This trial is not meant evaluate the quality of the TEI, only that TEI might be possible. Further trials will explore TEI quality.
 
 The prompt:
 
