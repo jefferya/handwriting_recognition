@@ -12,7 +12,17 @@ pip install -r requirements/requirements.txt
 
 .env.sample: fill in HF_TOKEN
 
+``` bash
 source .env
+```
+
+If small home directory then move where .cache and HF models are stored
+
+```
+   cd /mnt/handwriting_recognition/
+   pip install --cache-dir /mnt/.cache -r requirements/requirements_transformers.txt
+   export HF_HOME="/mnt/handwriting_recognition/"
+```
 
 ## Samples
 
