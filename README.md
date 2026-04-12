@@ -5,7 +5,7 @@ A repository for testing LLMs with handwriting recognition. This is meant as a p
 ## Setup
 
 ``` sh
-python -m venv venv
+python3 -m venv venv
 source ./venv/bin/activate
 pip install -r requirements/requirements.txt
 ```
