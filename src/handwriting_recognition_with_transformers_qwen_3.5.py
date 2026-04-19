@@ -108,6 +108,7 @@ def run_qwen35_ocr(image_path, model_size="9B", max_new_tokens=1024):
                     "1. For person named entities in the transcription, wrap the named entity in a TEI <persName> element and add a reference to the wikidate uri"
                     "2. For place named entities in the transcription, wrap the named entity in a TEI <place> element and add a reference to the wikidate uri"
                     "3. For dates in the transcriptions, wrap the date in a TEI <date> element and add a reference to the wikidate uri"
+                    "4. After adding the ner to the TEI XML write this combination as the final output"
                     "</post_process_transcription>"
                     )
 

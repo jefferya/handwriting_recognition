@@ -4,6 +4,8 @@ torch
 torchvision
 transformers
 qwen-vl-utils
-flash-linear-attention
+# flash-linear-attention
+# triton
+# causal-conv1d>=1.2.0
 
 # python3.14 -c "import torch; import torchvision; print(f'Torch: {torch.__version__} | Vision: {torchvision.__version__}')"
