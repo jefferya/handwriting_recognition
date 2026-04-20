@@ -1,4 +1,4 @@
-# Trial 1: Gettysburg Address to TEI XML
+# Trial 2: Gettysburg Address to TEI XML
 
 ## Trial Setup
 
