@@ -32,8 +32,8 @@ If small home directory then move where .cache and HF models are stored
 
 ## Trials
 
-1. Question: can Qwen 3.5 transcribe a scan of handwriting and output as TEI XML that can be loaded into [LEAF-Writer](https://leaf-writer.leaf-vre.org/) [/trials/test_1.md](./trials/test_1.md)?
+1. Question: can Qwen 3.5 transcribe a scan of handwriting and output as TEI XML that can be loaded into [LEAF-Writer](https://leaf-writer.leaf-vre.org/) [/trials/trial_1.md](./trials/trial_1.md)?
 
-2. Question: build upon trial #1 and enhance the prompt to enforce well-formed XML, TEI Header with indicating what generated the transcription with a timestamp. An attempt to tag some named entity references. [./trials/test_2.md](./trials/test_2.md)?
+2. Question: build upon trial #1 and enhance the prompt to enforce well-formed XML, TEI Header with indicating what generated the transcription with a timestamp. An attempt to tag some named entity references. [./trials/trial_2.md](./trials/trial_2.md)?
 
-3. Trials 3 & 4 refine the prompt.
+3. Trials 3 & 4 refine the prompt: [./trials/trial_3.md](./trials/trial_3.md) & [./trials/trial_4.md](./trials/trial_4.md).
